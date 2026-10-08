@@ -1,0 +1,26 @@
+# The protected Secret Analytics API, run the way you would run it in production.
+#
+#   docker compose up -d --build     → http://localhost:8300/docs
+#   docker compose logs -f api
+#   docker compose down
+services:
+  api:
+    build: .
+    image: pyarmor-demo:local
+    # Published on localhost only. In production, a reverse proxy terminates HTTPS in front of it
+    # (see workshop/10-deployment.md); the API itself is never exposed directly.
+    ports:
+      - "127.0.0.1:8300:8300"
+    environment:
+      PYARMOR_DEMO_ENV: ${PYARMOR_DEMO_ENV:-production}
+      PYARMOR_DEMO_LOG_LEVEL: ${PYARMOR_DEMO_LOG_LEVEL:-info}
+    restart: unless-stopped
+    # Hardening: a read-only filesystem, no Linux capabilities, no privilege escalation.
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    # The image defines the health check; compose shows it in `docker compose ps`.

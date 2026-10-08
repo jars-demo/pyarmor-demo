@@ -1,0 +1,8 @@
+# Allowlist: the build context holds only what the builder stage copies. Everything else (.git,
+# tests, docs, workshop, web, .env, local builds) never reaches Docker at all.
+*
+!app/
+!scripts/obfuscate.py
+!scripts/verify.py
+!requirements.txt
+**/__pycache__
