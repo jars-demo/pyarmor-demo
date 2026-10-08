@@ -41,7 +41,7 @@
 - [ ] **Scan for known vulnerabilities**, in CI and on a schedule:
 
 ```bash
-uvx pip-audit -r requirements.txt
+uvx pip-audit==2.10.0 -r requirements.txt
 ```
 
 > **What it does:** checks every pinned package against the Python Packaging Advisory Database.
@@ -63,13 +63,22 @@ uvx pip-audit -r requirements.txt
 Locally, with Docker:
 
 ```bash
-docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.69.3 image --severity HIGH,CRITICAL pyarmor-demo:local
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy:0.74.0 image --ignore-unfixed --severity HIGH,CRITICAL pyarmor-demo:local
 ```
 
-> **What it does:** scans the image's OS packages and Python packages for known HIGH and CRITICAL
-> vulnerabilities.
-> **Expected:** a table per layer type; ideally `Total: 0`. Findings in the base image are usually
-> fixed by rebuilding on a newer `python:3.12-slim`.
+> **What it does:** scans the image's OS packages (Debian) and Python packages for known HIGH and
+> CRITICAL vulnerabilities that **have a fix available** (`--ignore-unfixed`).
+> **Why:** a finding with a fix is something you can act on: rebuild on a newer
+> `python:3.12-slim`, or bump the package.
+> **Expected:** a summary table with `0` for every Python package and for the Debian base, at
+> the time of writing. Drop `--ignore-unfixed` to see everything: in our run, the Python packages
+> still had 0, and the Debian base had several dozen HIGH findings that Debian had not fixed yet
+> (status `affected`). Track those; they disappear as the base image is updated.
+
+> [!CAUTION]
+> Pin scanners and CI actions to exact versions, ideally commit SHAs. In 2026, release tags of a
+> popular scanner's GitHub Action were hijacked to run malicious code in CI pipelines: a tag can
+> move, a commit SHA cannot.
 
 ## CI/CD protection
 
