@@ -5,7 +5,9 @@
 #   docker compose down
 services:
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: app/backend/Dockerfile
     image: pyarmor-demo:local
     # Published on localhost only. In production, a reverse proxy terminates HTTPS in front of it
     # (see workshop/10-deployment.md); the API itself is never exposed directly.

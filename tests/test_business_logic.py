@@ -3,10 +3,18 @@ produce exactly the same numbers as the original."""
 
 import pytest
 
-from app.business_logic.recommendations import generate_recommendation
-from app.business_logic.scoring import calculate_business_score, calculate_risk_score, classify
-from app.business_logic.transforms import engagement_curve, proprietary_transform, value_index
-from app.services.analytics import analyze
+from app.backend.business_logic.recommendations import generate_recommendation
+from app.backend.business_logic.scoring import (
+    calculate_business_score,
+    calculate_risk_score,
+    classify,
+)
+from app.backend.business_logic.transforms import (
+    engagement_curve,
+    proprietary_transform,
+    value_index,
+)
+from app.backend.services.analytics import analyze
 
 
 class TestTransforms:

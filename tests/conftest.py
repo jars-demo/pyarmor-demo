@@ -18,15 +18,21 @@ if APP_DIR:
 
 from fastapi.testclient import TestClient  # noqa: E402
 
-from app.core.config import Settings  # noqa: E402
-from app.main import create_app  # noqa: E402
+from app.backend.core.config import Settings  # noqa: E402
+from app.backend.main import create_app  # noqa: E402
 
 EXPECT_BUILD = os.getenv("PYARMOR_DEMO_EXPECT_BUILD")
 
 
 @pytest.fixture
 def client() -> TestClient:
-    settings = Settings(host="127.0.0.1", port=0, log_level="warning", environment="test")
+    settings = Settings(
+        host="127.0.0.1",
+        port=0,
+        log_level="warning",
+        environment="test",
+        cors_origins=("http://localhost:3300",),
+    )
     return TestClient(create_app(settings))
 
 

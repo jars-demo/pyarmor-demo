@@ -4,8 +4,8 @@ import logging
 
 import uvicorn
 
-from app.core.config import load_settings
-from app.main import app
+from app.backend.core.config import load_settings
+from app.backend.main import app
 
 
 def main() -> None:
@@ -13,8 +13,8 @@ def main() -> None:
     logging.basicConfig(
         level=settings.log_level.upper(), format="%(levelname)s %(name)s %(message)s"
     )
-    # Pass the app object, not the "app.main:app" string: a direct import is something bundlers
-    # such as PyInstaller can see, which matters once the code is obfuscated (workshop step 08).
+    # Pass the app object, not an "app.backend.main:app" string: bundlers such as PyInstaller can
+    # see a direct import, which matters once the code is obfuscated (workshop step 08).
     uvicorn.run(app, host=settings.host, port=settings.port, log_level=settings.log_level)
 
 

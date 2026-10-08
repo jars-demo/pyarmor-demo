@@ -26,7 +26,7 @@ def main() -> int:
         description=__doc__, formatter_class=argparse.RawTextHelpFormatter
     )
     parser.add_argument("--dir", help="folder that contains a protected app/ (default: the source)")
-    parser.add_argument("--module", default="app.business_logic.scoring")
+    parser.add_argument("--module", default="app.backend.business_logic.scoring")
     args = parser.parse_args()
 
     sys.path.insert(0, str((ROOT / args.dir).resolve() if args.dir else ROOT))

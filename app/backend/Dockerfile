@@ -3,7 +3,7 @@
 # Two stages. The builder has the source and PyArmor and produces the protected build; the runtime
 # image gets only that build and the runtime dependencies. No source, no tests, no PyArmor.
 #
-#   docker build -t pyarmor-demo .
+#   docker build -f app/backend/Dockerfile -t pyarmor-demo .      (from the repository root)
 #   docker run --rm -p 127.0.0.1:8300:8300 pyarmor-demo
 #
 # PyArmor output only runs on the Python version that built it, so both stages use the same image.
@@ -33,7 +33,8 @@ RUN python -m venv /opt/venv \
 # runtime image. The trial version is used here; see workshop/04-pyarmor-setup.md for licensing.
 RUN pip install "pyarmor==${PYARMOR_VERSION}"
 
-COPY app ./app
+COPY app/__init__.py app/__main__.py ./app/
+COPY app/backend ./app/backend
 COPY scripts/obfuscate.py scripts/verify.py ./scripts/
 
 # Obfuscate, then check the result. Either step fails the build if something is wrong.

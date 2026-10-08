@@ -5,9 +5,13 @@ import threading
 from collections import Counter
 from datetime import datetime, timezone
 
-from app.business_logic.recommendations import generate_recommendation
-from app.business_logic.scoring import calculate_business_score, calculate_risk_score, classify
-from app.business_logic.transforms import proprietary_transform
+from app.backend.business_logic.recommendations import generate_recommendation
+from app.backend.business_logic.scoring import (
+    calculate_business_score,
+    calculate_risk_score,
+    classify,
+)
+from app.backend.business_logic.transforms import proprietary_transform
 
 logger = logging.getLogger("app.analytics")
 

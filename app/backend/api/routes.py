@@ -4,10 +4,10 @@ import platform
 
 from fastapi import APIRouter, Request
 
-from app.api.schemas import AnalyzeRequest, AnalyzeResponse, InfoResponse, ReportResponse
-from app.core import build_info
-from app.core.config import APP_NAME, APP_VERSION
-from app.services.analytics import analyze
+from app.backend.api.schemas import AnalyzeRequest, AnalyzeResponse, InfoResponse, ReportResponse
+from app.backend.core import build_info
+from app.backend.core.config import APP_NAME, APP_VERSION
+from app.backend.services.analytics import analyze
 
 router = APIRouter()
 

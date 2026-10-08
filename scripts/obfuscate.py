@@ -5,7 +5,7 @@
 
 It runs one command, and prints it so you can see there is no magic:
 
-    pyarmor gen -O build/protected -r app
+    pyarmor gen -O build/protected -r --exclude app/frontend app
 
 Anything after `--` is passed to `pyarmor gen` unchanged.
 
@@ -25,6 +25,8 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 PACKAGE = "app"
+# The website lives in app/frontend. It is not Python and must never reach the protected build.
+EXCLUDE = ["--exclude", "app/frontend"]
 
 
 def find_pyarmor() -> list[str]:
@@ -55,7 +57,7 @@ def main() -> int:
         shutil.rmtree(output)  # stale files from an older build would hide a failed one
 
     pyarmor = find_pyarmor()
-    command = [*pyarmor, "gen", "-O", args.output, "-r", *args.extra, PACKAGE]
+    command = [*pyarmor, "gen", "-O", args.output, "-r", *EXCLUDE, *args.extra, PACKAGE]
     print("$ " + " ".join(["pyarmor", *command[len(pyarmor) :]]), flush=True)
 
     result = subprocess.run(command, cwd=ROOT, capture_output=True, text=True)

@@ -9,7 +9,9 @@ name: pyarmor-demo-prod
 
 services:
   api:
-    build: ..
+    build:
+      context: ..
+      dockerfile: app/backend/Dockerfile
     image: pyarmor-demo:prod
     environment:
       PYARMOR_DEMO_ENV: production

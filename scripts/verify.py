@@ -5,7 +5,7 @@
     python scripts/verify.py --dir build/x   # check another build
 
 Static checks:
-  1. Every module in app/ has a protected counterpart, and nothing extra was added.
+  1. Every Python module in app/ has a protected counterpart, and nothing extra was added.
   2. Every protected module starts with PyArmor's header and calls __pyarmor__.
   3. The PyArmor runtime package (pyarmor_runtime_*) is present, with its binary extension.
   4. Names from the original source (functions, constants, strings) cannot be found as plain
@@ -27,6 +27,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SOURCE = ROOT / "app"
+FRONTEND = SOURCE / "frontend"  # the website: not Python, never obfuscated
 MIN_STRING = 8  # shorter strings ("score", "watch") also appear in unrelated binary noise
 PAYLOAD_START = b"__pyarmor__(__name__, __file__,"
 
@@ -58,7 +59,7 @@ def check(build: Path) -> list[str]:
     if not protected_pkg.is_dir():
         return [f"{protected_pkg.relative_to(ROOT)} not found. Run scripts/obfuscate.py first."]
 
-    sources = {p.relative_to(SOURCE) for p in SOURCE.rglob("*.py")}
+    sources = {p.relative_to(SOURCE) for p in SOURCE.rglob("*.py") if FRONTEND not in p.parents}
     protected = {p.relative_to(protected_pkg) for p in protected_pkg.rglob("*.py")}
     for missing in sorted(sources - protected):
         problems.append(f"missing from build: app/{missing.as_posix()}")

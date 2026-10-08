@@ -79,3 +79,14 @@ def test_report_counts_analyses(client):
     assert body["average_score"] == pytest.approx((78.33 + 0.0) / 2, abs=0.01)
     assert body["by_classification"] == {"strategic": 1, "watch": 1}
     assert body["last_analysis_at"] is not None
+
+
+def test_cors_allows_the_frontend_dev_server(client):
+    origin = "http://localhost:3300"
+    response = client.get("/health", headers={"Origin": origin})
+    assert response.headers.get("access-control-allow-origin") == origin
+
+
+def test_cors_ignores_other_origins(client):
+    response = client.get("/health", headers={"Origin": "https://evil.example"})
+    assert "access-control-allow-origin" not in response.headers
