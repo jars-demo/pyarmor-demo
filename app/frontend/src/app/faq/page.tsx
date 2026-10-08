@@ -21,7 +21,7 @@ const FAQ = [
   },
   {
     q: 'Can obfuscated Python be reverse engineered?',
-    a: 'With enough time, skill and access, the behaviour of any program that runs on a machine you do not control can be studied. Obfuscation makes that much more expensive. It does not make it impossible, and no honest tool claims it does for code running in an attacker-controlled environment.',
+    a: 'With enough time, skill and access, the behaviour of any program that runs on a machine you do not control can be studied. Obfuscation makes that much more expensive. It does not make it impossible, especially for code running in an environment the attacker controls.',
   },
   {
     q: 'Does obfuscation protect secrets?',
