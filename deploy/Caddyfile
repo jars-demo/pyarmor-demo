@@ -1,0 +1,24 @@
+# Caddy in front of the protected API: HTTPS (automatic Let's Encrypt certificates), security
+# headers, compression and JSON access logs. Set API_DOMAIN in deploy/.env.
+{$API_DOMAIN} {
+	encode zstd gzip
+
+	reverse_proxy api:8300 {
+		# Caddy stops sending traffic to the API while /health fails.
+		health_uri /health
+		health_interval 15s
+	}
+
+	header {
+		Strict-Transport-Security "max-age=31536000; includeSubDomains"
+		X-Content-Type-Options "nosniff"
+		Referrer-Policy "no-referrer"
+		# Do not advertise the server software.
+		-Server
+	}
+
+	log {
+		output stdout
+		format json
+	}
+}
