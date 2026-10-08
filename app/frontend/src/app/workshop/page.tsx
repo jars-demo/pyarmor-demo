@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 
+import { CodeBlock } from '@/components/CodeBlock'
 import { CHAPTERS, TOTAL_MINUTES } from '@/lib/chapters'
-import { IS_STATIC_SITE, REPO_URL } from '@/lib/site'
+import { REPO_URL } from '@/lib/site'
 
 export const metadata: Metadata = {
   title: 'Workshop',
@@ -12,36 +13,26 @@ export const metadata: Metadata = {
 export default function WorkshopIndex() {
   return (
     <div>
-      <p className="text-sm font-semibold uppercase tracking-wider text-accent">Workshop</p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">From readable source to a protected container</h1>
-      <p className="mt-4 max-w-2xl text-lg text-muted">
-        {CHAPTERS.length} chapters, about {Math.round(TOTAL_MINUTES / 60)} hours. Every command was run with PyArmor 9.2.7, and every
-        command explains what it does, why, and what you should see.
+      <h1 className="text-3xl font-bold tracking-tight">Workshop</h1>
+      <p className="mt-2 text-muted">
+        {CHAPTERS.length} chapters · ~{Math.round(TOTAL_MINUTES / 60)} h · every command shows what it does, why, and the expected output.
       </p>
 
-      <section aria-labelledby="start" className="card mt-8 p-6">
-        <h2 id="start" className="text-lg font-semibold">
-          Before you start
-        </h2>
-        <p className="mt-2 text-muted">
-          You run everything on your own machine: Git, <a className="text-accent underline" href="https://docs.astral.sh/uv/">uv</a> and,
-          for chapters 09–10, Docker. {IS_STATIC_SITE ? 'This website hosts the guide only; there is no hosted API.' : ''}
-        </p>
-        <pre className="mt-4 overflow-x-auto rounded-xl border border-line bg-paper-2 p-4 font-mono text-[13px]">
-          {`git clone ${REPO_URL}.git\ncd pyarmor-demo\nuv sync`}
-        </pre>
-      </section>
+      <h2 className="mt-8 text-sm font-medium text-muted">Setup (Git, uv; Docker for 09–10)</h2>
+      <div className="mt-2">
+        <CodeBlock lang="bash" code={`git clone ${REPO_URL}.git\ncd pyarmor-demo\nuv sync`} />
+      </div>
 
-      <ol className="mt-8 grid gap-3 sm:grid-cols-2">
+      <ol className="mt-8 divide-y divide-line rounded-xl border border-line bg-paper">
         {CHAPTERS.map((chapter) => (
           <li key={chapter.slug}>
-            <a href={`/workshop/${chapter.slug}/`} className="card block h-full p-5 transition-colors hover:border-accent">
-              <div className="flex items-center justify-between text-xs font-medium text-faint">
-                <span className="font-mono">{chapter.number}</span>
-                <span>{chapter.minutes} min</span>
-              </div>
-              <h2 className="mt-2 font-semibold">{chapter.title}</h2>
-              <p className="mt-1 text-sm text-muted">{chapter.summary}</p>
+            <a href={`/workshop/${chapter.slug}/`} className="flex items-center gap-4 px-4 py-3 hover:bg-paper-2">
+              <span className="w-6 font-mono text-xs text-faint">{chapter.number}</span>
+              <span className="min-w-0 flex-1">
+                <span className="block font-medium">{chapter.title}</span>
+                <span className="block truncate text-sm text-muted">{chapter.summary}</span>
+              </span>
+              <span className="font-mono text-xs text-faint">{chapter.minutes}m</span>
             </a>
           </li>
         ))}

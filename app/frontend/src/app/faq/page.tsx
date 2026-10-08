@@ -60,8 +60,7 @@ const FAQ = [
 export default function FaqPage() {
   return (
     <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-      <p className="text-sm font-semibold uppercase tracking-wider text-accent">FAQ</p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Frequently asked questions</h1>
+      <h1 className="text-3xl font-bold tracking-tight">FAQ</h1>
       <div className="mt-10 divide-y divide-line rounded-2xl border border-line bg-paper">
         {FAQ.map((item) => (
           <details key={item.q} className="group px-5 py-4">

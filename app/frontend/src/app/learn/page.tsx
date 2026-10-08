@@ -54,10 +54,9 @@ __pyarmor__(__name__, __file__, b'PY000000\\x00\\x03\\x0c\\x00\\xcb\\r\\r\\n\\x8
 export default function LearnPage() {
   return (
     <div className="mx-auto max-w-5xl px-4 py-12 sm:px-6">
-      <p className="text-sm font-semibold uppercase tracking-wider text-accent">Learn</p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">The ideas, before the commands</h1>
+      <h1 className="text-3xl font-bold tracking-tight">Learn</h1>
       <p className="mt-4 max-w-3xl text-lg text-muted">
-        Six short concepts. Open any of them for the detail; the workshop then proves each one on a real app.
+        Six concepts. The workshop proves each one on a real app.
       </p>
 
       <div className="mt-10 space-y-3">

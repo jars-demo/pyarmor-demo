@@ -10,7 +10,7 @@ const CARDS = [
   {
     title: 'Source Available',
     who: 'Attacker has readable source: your Git repository, or a package of plain .py files.',
-    severity: 'Critical exposure',
+    severity: 'Exposed',
     meter: 3,
     tone: 'danger',
     points: ['Every function, constant and comment is readable in seconds.', 'Copying the logic into another product is trivial.', 'Shipping only .pyc files does not help: bytecode decompiles.'],
@@ -32,7 +32,7 @@ const CARDS = [
   {
     title: 'Execution Environment Controlled',
     who: 'Attacker controls the machine or container: shell, filesystem, processes, logs, environment variables, network.',
-    severity: 'Obfuscation is not the boundary',
+    severity: 'Not the boundary',
     meter: 3,
     tone: 'danger',
     points: [
@@ -53,11 +53,12 @@ const LAYERS = [
   ['Signed artifacts, protected CI', 'Tampered or unofficial builds'],
 ]
 
+const slug = (title: string) => title.toLowerCase().replace(/\s+/g, '-')
+
 export default function SecurityPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-      <p className="text-sm font-semibold uppercase tracking-wider text-accent">Security model</p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">Who holds what decides what obfuscation is worth</h1>
+      <h1 className="text-3xl font-bold tracking-tight">Security model</h1>
       <p className="mt-4 max-w-3xl text-lg text-muted">
         Obfuscation increases the difficulty of understanding and reusing application logic, but it does not provide absolute secrecy when
         an attacker controls the execution environment.
@@ -65,16 +66,11 @@ export default function SecurityPage() {
 
       <div className="mt-10 grid gap-5 lg:grid-cols-3">
         {CARDS.map((card) => (
-          <section key={card.title} aria-labelledby={card.title} className={`card flex flex-col border-t-4 p-6 ${card.tone === 'warn' ? 'border-t-warn' : 'border-t-danger'}`}>
+          <section key={card.title} aria-labelledby={slug(card.title)} className={`card flex flex-col border-t-2 p-6 ${card.tone === 'warn' ? 'border-t-warn' : 'border-t-danger'}`}>
             <div className="flex items-center justify-between gap-3">
               <p className={`text-xs font-semibold uppercase tracking-wider ${card.tone === 'warn' ? 'text-warn' : 'text-danger'}`}>{card.severity}</p>
-              <span className="flex gap-1" role="img" aria-label={`Exposure ${card.meter} of 3`}>
-                {[1, 2, 3].map((n) => (
-                  <span key={n} className={`h-2 w-5 rounded-full ${n <= card.meter ? (card.tone === 'warn' ? 'bg-warn' : 'bg-danger') : 'bg-paper-2'}`} />
-                ))}
-              </span>
             </div>
-            <h2 id={card.title} className="mt-3 text-xl font-semibold">
+            <h2 id={slug(card.title)} className="mt-3 text-xl font-semibold">
               {card.title}
             </h2>
             <p className="mt-2 text-sm text-muted">{card.who}</p>
@@ -96,7 +92,7 @@ export default function SecurityPage() {
         ))}
       </div>
 
-      <blockquote className="mt-12 rounded-2xl border border-accent/30 bg-accent-soft p-6 text-lg font-medium sm:p-8">
+      <blockquote className="mt-10 border-l-4 border-brand pl-5 text-lg font-medium">
         The strongest security boundary is not obfuscation alone. Protect the environment, secrets, identity, deployment, infrastructure, and
         release pipeline as well.
       </blockquote>

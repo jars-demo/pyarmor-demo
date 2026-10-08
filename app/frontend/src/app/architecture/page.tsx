@@ -43,9 +43,8 @@ const COMPONENTS = [
 export default function ArchitecturePage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-      <p className="text-sm font-semibold uppercase tracking-wider text-accent">Architecture</p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">From source to a running, protected service</h1>
-      <p className="mt-4 max-w-3xl text-lg text-muted">Select a box to read what it is, where it lives in the repository, and what it does.</p>
+      <h1 className="text-3xl font-bold tracking-tight">Architecture</h1>
+      <p className="mt-4 max-w-3xl text-lg text-muted">Each box links to what it is and where it lives in the repo.</p>
 
       <div className="mt-10 grid gap-10 lg:grid-cols-[minmax(0,420px)_minmax(0,1fr)]">
         <figure aria-label="Architecture diagram" className="card p-5 lg:sticky lg:top-24 lg:self-start">

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+import { ChapterPager } from '@/components/ChapterPager'
 import { Markdown } from '@/components/Markdown'
 import { CompleteButton } from '@/components/WorkshopProgress'
 import { CHAPTERS, chapterIndex } from '@/lib/chapters'
@@ -38,7 +39,10 @@ export default async function ChapterPage({ params }: Props) {
   return (
     <article>
       <header className="border-b border-line pb-6">
-        <p className="font-mono text-sm font-semibold text-accent">Chapter {chapter.number}</p>
+        <div className="flex items-center justify-between gap-4">
+          <p className="font-mono text-sm font-semibold text-accent">Chapter {chapter.number}</p>
+          <ChapterPager previous={previous} next={next} index={index} total={CHAPTERS.length} compact />
+        </div>
         <h1 className="mt-1 text-3xl font-bold tracking-tight sm:text-4xl">{chapter.title}</h1>
         {meta && <p className="mt-3 text-muted">⏱ {meta}</p>}
       </header>
@@ -54,26 +58,7 @@ export default async function ChapterPage({ params }: Props) {
             Edit this chapter on GitHub
           </a>
         </div>
-        <nav aria-label="Chapter navigation" className="grid gap-3 sm:grid-cols-2">
-          {previous ? (
-            <a href={`/workshop/${previous.slug}/`} className="card p-4 hover:border-accent">
-              <span className="text-xs text-faint">← Previous</span>
-              <span className="mt-1 block font-semibold">
-                {previous.number} · {previous.title}
-              </span>
-            </a>
-          ) : (
-            <span />
-          )}
-          {next && (
-            <a href={`/workshop/${next.slug}/`} className="card p-4 text-right hover:border-accent">
-              <span className="text-xs text-faint">Next →</span>
-              <span className="mt-1 block font-semibold">
-                {next.number} · {next.title}
-              </span>
-            </a>
-          )}
-        </nav>
+        <ChapterPager previous={previous} next={next} index={index} total={CHAPTERS.length} />
       </footer>
     </article>
   )

@@ -16,8 +16,6 @@
   --accent-soft: #eff6ff;
   --brand: #2563eb; /* filled buttons (white text) */
   --brand-hover: #3b82f6;
-  --hero-from: #eff6ff;
-  --hero-to: #ffffff;
   --info: #0369a1;
   --info-soft: #f0f9ff;
   --warn: #b45309;
@@ -26,7 +24,7 @@
   --danger-soft: #fef2f2;
   --ok: #15803d;
   --ok-soft: #f0fdf4;
-  --shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 4px 16px rgb(15 23 42 / 0.05);
+  --shadow: none;
   color-scheme: light;
 }
 
@@ -42,8 +40,6 @@
   --accent-soft: #172554;
   --brand: #2563eb;
   --brand-hover: #3b82f6;
-  --hero-from: #0f1b33;
-  --hero-to: #0b1220;
   --info: #38bdf8;
   --info-soft: #0c2a3f;
   --warn: #fbbf24;
@@ -52,7 +48,7 @@
   --danger-soft: #3b1414;
   --ok: #4ade80;
   --ok-soft: #0f2e1c;
-  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
+  --shadow: none;
   color-scheme: dark;
 }
 
@@ -82,6 +78,8 @@
 }
 
 html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px;
   background: var(--bg);
   color: var(--text);
   -webkit-text-size-adjust: 100%;
@@ -111,8 +109,7 @@ body {
 .card {
   background: var(--paper);
   border: 1px solid var(--line);
-  border-radius: 16px;
-  box-shadow: var(--shadow);
+  border-radius: 12px;
 }
 
 /* --- Code (Shiki dual themes) ----------------------------------------------------------- */

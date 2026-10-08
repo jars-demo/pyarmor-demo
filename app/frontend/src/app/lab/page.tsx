@@ -18,7 +18,7 @@ function RunLocally() {
         <p className="text-xs font-semibold uppercase tracking-wider text-accent">1 · Start it</p>
         <h2 className="mt-2 text-lg font-semibold">The whole app, with Docker</h2>
         <p className="mt-2 text-sm text-muted">
-          Builds the protected API image (PyArmor runs inside the build) and this website, then serves both.
+          Builds the protected API (PyArmor runs inside the build) and this site.
         </p>
         <div className="mt-4">
           <CodeBlock lang="bash" code={`git clone ${REPO_URL}.git\ncd pyarmor-demo\ndocker compose up -d --build`} />
@@ -31,8 +31,7 @@ function RunLocally() {
         <p className="text-xs font-semibold uppercase tracking-wider text-accent">2 · Or follow the workshop</p>
         <h2 className="mt-2 text-lg font-semibold">Run each build yourself</h2>
         <p className="mt-2 text-sm text-muted">
-          The workshop runs the original API, protects it with PyArmor, and runs the protected build, all with <code className="font-mono">uv</code>.
-          The Lab works with any of them.
+          Original or protected, with <code className="font-mono">uv</code>. The Lab works with both.
         </p>
         <div className="mt-4">
           <CodeBlock lang="bash" code={`uv sync\nuv run python scripts/obfuscate.py\ncd build/protected && uv run python -m app`} />
@@ -48,14 +47,11 @@ function RunLocally() {
 export default function LabPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6">
-      <p className="text-sm font-semibold uppercase tracking-wider text-accent">Lab</p>
-      <h1 className="mt-2 text-3xl font-bold tracking-tight sm:text-4xl">
-        {IS_STATIC_SITE ? 'Run the Lab on your machine' : 'Talk to your protected API'}
-      </h1>
-      <p className="mt-4 max-w-3xl text-lg text-muted">
+      <h1 className="text-3xl font-bold tracking-tight">Lab</h1>
+      <p className="mt-2 text-muted">
         {IS_STATIC_SITE
-          ? 'The Lab calls the Secret Analytics API. This website hosts no backend, so the API runs on your computer: no account, no keys, nothing leaves your machine.'
-          : 'This page calls the API running on your machine. The badge shows which build answered. Clients get the same answers either way: that is the point.'}
+          ? 'Calls the Secret Analytics API on your machine. This site hosts no backend.'
+          : 'Calls the API on your machine. The badge shows which build answered; the answers are identical.'}
       </p>
       <div className="mt-10">{IS_STATIC_SITE ? <RunLocally /> : <LiveLab />}</div>
     </div>
