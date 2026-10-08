@@ -1,28 +1,45 @@
-# The protected Secret Analytics API, run the way you would run it in production.
+# The whole workshop app: the protected API and the website, run the way you would run them in
+# production.
 #
-#   docker compose up -d --build     → http://localhost:8300/docs
+#   docker compose up -d --build     → http://localhost:3300 (site + Lab), http://localhost:8300/docs (API)
 #   docker compose logs -f api
 #   docker compose down
+#
+# Both ports are published on localhost only. In production, a reverse proxy terminates HTTPS in
+# front (see deploy/ and workshop/10-deployment.md).
+
+x-hardening: &hardening
+  restart: unless-stopped
+  read_only: true
+  tmpfs:
+    - /tmp
+  cap_drop:
+    - ALL
+  security_opt:
+    - no-new-privileges:true
+
 services:
   api:
+    <<: *hardening
     build:
       context: .
       dockerfile: app/backend/Dockerfile
     image: pyarmor-demo:local
-    # Published on localhost only. In production, a reverse proxy terminates HTTPS in front of it
-    # (see workshop/10-deployment.md); the API itself is never exposed directly.
     ports:
       - "127.0.0.1:8300:8300"
     environment:
       PYARMOR_DEMO_ENV: ${PYARMOR_DEMO_ENV:-production}
       PYARMOR_DEMO_LOG_LEVEL: ${PYARMOR_DEMO_LOG_LEVEL:-info}
-    restart: unless-stopped
-    # Hardening: a read-only filesystem, no Linux capabilities, no privilege escalation.
-    read_only: true
-    tmpfs:
-      - /tmp
-    cap_drop:
-      - ALL
-    security_opt:
-      - no-new-privileges:true
-    # The image defines the health check; compose shows it in `docker compose ps`.
+    # The image defines the health check; `docker compose ps` shows it.
+
+  web:
+    <<: *hardening
+    build:
+      context: .
+      dockerfile: app/frontend/Dockerfile
+    image: pyarmor-demo-web:local
+    ports:
+      - "127.0.0.1:3300:8080"
+    depends_on:
+      api:
+        condition: service_healthy

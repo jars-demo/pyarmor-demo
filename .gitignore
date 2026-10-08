@@ -1,9 +1,11 @@
-# Repo-wide ignores. Website-only rules live in web/.gitignore.
+# Repo-wide ignores. Website-only rules live in app/frontend/.gitignore.
 
 # Secrets and local settings: only the example is shared
 .env
 .env.*
 !.env.example
+# Not secret: the frontend dev server's API address (localhost)
+!app/frontend/.env.development
 
 # Build output: protected builds, wheels, PyInstaller bundles. Always regenerated, never committed
 # (they only run on the platform and Python version that built them).

@@ -1,0 +1,7 @@
+# Build context for app/frontend/Dockerfile (the repository root): only the site and the workshop.
+*
+!app/frontend/
+!workshop/
+app/frontend/node_modules
+app/frontend/.next
+app/frontend/out

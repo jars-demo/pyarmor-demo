@@ -1,0 +1,12 @@
+# Build context for app/backend/Dockerfile (the repository root): an allowlist. The context holds
+# only what the builder stage copies.
+# Everything else (.git, tests, workshop, app/frontend, .env, local builds) never reaches
+# Docker at all. The frontend image has its own context and ignore file in app/frontend/.
+*
+!app/__init__.py
+!app/__main__.py
+!app/backend/
+!scripts/obfuscate.py
+!scripts/verify.py
+!requirements.txt
+**/__pycache__
