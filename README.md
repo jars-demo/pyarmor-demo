@@ -263,5 +263,5 @@ not endorsed by them. PyArmor is a product of Dashingsoft, used here under its f
 
 ## License
 
-[MIT](LICENSE) © 2026 Jishanahmed AR Shaikh. Part of [JARS Demo](https://github.com/jars-demo) ·
+Built by [Mr. JARS](https://jishanahmed.in). [MIT](LICENSE) © 2026 Jishanahmed AR Shaikh. Part of [JARS Demo](https://github.com/jars-demo) ·
 [JARS Skills](https://github.com/jars-demo/jars-skills) · [skills.jishanahmed.in](https://skills.jishanahmed.in)

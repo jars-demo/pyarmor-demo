@@ -9,7 +9,11 @@ export function Footer() {
         <div className="flex flex-col gap-3">
           <Logo size={28} />
           <p>
-          Built by <strong className="text-text">JARS</strong> · A community workshop, not affiliated with PyArmor or Dashingsoft ·
+          Built by{' '}
+          <a href="https://jishanahmed.in" target="_blank" rel="noreferrer" className="font-semibold text-text hover:text-accent">
+            Mr. JARS
+          </a>{' '}
+          · A community workshop, not affiliated with PyArmor or Dashingsoft ·
           Tested with PyArmor {PYARMOR_VERSION}
           </p>
           <a href="/protect-your-project/" className="text-xs text-faint hover:text-accent">
