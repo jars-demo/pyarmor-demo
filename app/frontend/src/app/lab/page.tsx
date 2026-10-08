@@ -50,7 +50,7 @@ export default function LabPage() {
       <h1 className="text-3xl font-bold tracking-tight">Lab</h1>
       <p className="mt-2 text-muted">
         {IS_STATIC_SITE
-          ? 'Calls the Secret Analytics API on your machine. This site hosts no backend.'
+          ? 'Calls the Secret Analytics API running on your machine.'
           : 'Calls the API on your machine. The badge shows which build answered; the answers are identical.'}
       </p>
       <div className="mt-10">{IS_STATIC_SITE ? <RunLocally /> : <LiveLab />}</div>

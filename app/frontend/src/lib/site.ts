@@ -1,6 +1,6 @@
 // Build flavours. `npm run build` (and Docker) makes the full app: the Lab page calls the API.
-// `npm run build:static` (Vercel) makes the public site: same pages, but the Lab page explains how
-// to run the API locally, because pyarmor.jishanahmed.in hosts no backend.
+// `npm run build:static` makes the public site: same pages, but the Lab page explains how to run
+// the API locally, because the public site has no backend.
 export const IS_STATIC_SITE = process.env.NEXT_PUBLIC_SITE_MODE === 'static'
 
 // Empty in Docker (nginx proxies /api on the same origin); http://localhost:8300 in `npm run dev`.

@@ -89,17 +89,6 @@ export default function ArchitecturePage() {
           ))}
         </ol>
       </div>
-
-      <section aria-labelledby="hosting" className="card mt-12 p-6">
-        <h2 id="hosting" className="text-lg font-semibold">
-          How this project is hosted
-        </h2>
-        <p className="mt-2 text-sm text-muted">
-          <strong className="text-text">pyarmor.jishanahmed.in</strong> is this website as a static export on Vercel, with no backend. The
-          protected API runs where you run it: <code className="font-mono">docker compose up</code> starts it with this site at
-          localhost:3300, and <code className="font-mono">deploy/</code> is a template for your own server.
-        </p>
-      </section>
     </div>
   )
 }

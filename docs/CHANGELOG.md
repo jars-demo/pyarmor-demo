@@ -29,6 +29,6 @@ The first version of the workshop. Tested with PyArmor 9.2.7 (trial) on Python 3
   what it does, why, and the expected output.
 - **Website** (`app/frontend`): Next.js static site with the workshop, Learn, a before/after
   Playground of real PyArmor output, a live Lab that calls the local API, Architecture, Security
-  Model and FAQ pages; light and dark themes; deployable to Vercel as a static site.
+  Model and FAQ pages; light and dark themes; builds as a fully static site.
 - **CI**: lint, tests, protected build and verification, Docker smoke tests and image checks, SBOM,
   vulnerability scanning, dependency audit, and website builds.

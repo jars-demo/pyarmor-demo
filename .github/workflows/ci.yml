@@ -108,7 +108,7 @@ jobs:
       - run: npm ci
       - run: npm run lint
       - run: npm run typecheck
-      - name: Build the Vercel site (static flavour)
+      - name: Build the static site
         run: npm run build:static
       - name: Build the full app (Docker flavour)
         run: npm run build

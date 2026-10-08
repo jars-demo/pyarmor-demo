@@ -1,6 +1,6 @@
 import type { NextConfig } from 'next'
 
-// A fully static site (out/): served by nginx in Docker, and by Vercel at pyarmor.jishanahmed.in.
+// A fully static site (out/), served by nginx in Docker or by any static host.
 const config: NextConfig = {
   output: 'export',
   trailingSlash: true,

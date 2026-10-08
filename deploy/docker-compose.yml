@@ -1,5 +1,4 @@
 # A template for running the protected API on your own Linux server, behind Caddy with HTTPS.
-# The workshop website (pyarmor.jishanahmed.in) is a static site and does not use this.
 #
 #   cp deploy/.env.example deploy/.env      # set API_DOMAIN, point its DNS at the server
 #   docker compose -f deploy/docker-compose.yml up -d --build

@@ -4,17 +4,8 @@
 > container runs in production: behind a reverse proxy with HTTPS, with health checks, logs and a
 > restart policy.
 
-## How this project is deployed
-
-Be clear about what runs where:
-
-| What | Where | How |
-|---|---|---|
-| The workshop website, <https://pyarmor.jishanahmed.in> | Vercel | a static Next.js export of `app/frontend/`; no backend |
-| The protected API | **your machine** | `docker compose up` (chapter 09) |
-| The protected API on a server (optional) | a Linux server **you** provide | the template in [`deploy/`](../deploy) |
-
-There is no public instance of the API. Everything the workshop asks you to run, you run yourself.
+There is no public instance of the API: everything here runs on your machine or a server you
+provide.
 
 ## The production shape
 

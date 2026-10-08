@@ -202,7 +202,7 @@ pyarmor-demo/
 ├── app/
 │   ├── __main__.py           python -m app → the API
 │   ├── backend/              FastAPI service · Dockerfile (+ .dockerignore)
-│   └── frontend/             Next.js website · Dockerfile, nginx.conf, vercel.json
+│   └── frontend/             Next.js website · Dockerfile, nginx.conf
 ├── scripts/                  obfuscate · verify · smoke · runtime_view · gen_playground
 ├── tests/                    pytest suite (runs on the original and the protected build)
 ├── workshop/                 chapters 00–12
@@ -241,17 +241,6 @@ permissions and every action pinned to a commit SHA:
 
 No secrets are needed: CI uses the PyArmor trial within its free CI limits. To use a paid license,
 see [AGENTS.md](AGENTS.md#pyarmor-licenses).
-
-## Deployment
-
-| What | Where |
-|---|---|
-| [pyarmor.jishanahmed.in](https://pyarmor.jishanahmed.in) | Vercel, static export of `app/frontend` (`npm run build:static`); no backend |
-| The protected API | your machine, with `docker compose up` |
-| On your own server (optional) | [`deploy/`](deploy): Caddy with automatic HTTPS, tested on `localhost` |
-
-On Vercel: import the repository, set **Root Directory** to `app/frontend`; `vercel.json` sets the
-build command and output folder. The site reads `workshop/*.md` from the repository at build time.
 
 ## Contributing
 
