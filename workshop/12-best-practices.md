@@ -132,6 +132,9 @@ protecting. Use all the rest regardless.
 
 ---
 
-That is the workshop. You protected an application, proved it still works, shipped it in a
+That is the workshop. Applying it to code you own? See
+[Protect your own project](protect-your-project.md).
+
+You protected an application, proved it still works, shipped it in a
 container with no source, and saw exactly where obfuscation stops. Questions or improvements are
 welcome: see [Contributing](../README.md#contributing) in the README.

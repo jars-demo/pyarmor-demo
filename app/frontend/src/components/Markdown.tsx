@@ -35,6 +35,7 @@ export function slugify(text: string): string {
 // Chapter links (`05-obfuscation.md`) go to the chapter page; repository paths (`../deploy`) go to
 // GitHub; links to the live site stay on the site.
 export function rewriteHref(href: string): { href: string; external: boolean } {
+  if (href === 'protect-your-project.md') return { href: '/protect-your-project/', external: false }
   const chapter = href.match(/^(\d\d-[a-z0-9-]+)\.md(#.*)?$/)
   if (chapter) return { href: `/workshop/${chapter[1]}/${chapter[2] ?? ''}`, external: false }
   if (href.startsWith('../')) return { href: `${REPO_URL}/blob/main/${href.slice(3)}`, external: true }

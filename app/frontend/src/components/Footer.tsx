@@ -12,6 +12,9 @@ export function Footer() {
           Built by <strong className="text-text">JARS</strong> · A community workshop, not affiliated with PyArmor or Dashingsoft ·
           Tested with PyArmor {PYARMOR_VERSION}
           </p>
+          <a href="/protect-your-project/" className="text-xs text-faint hover:text-accent">
+            Have a project you want to protect? →
+          </a>
         </div>
         <ul className="flex flex-wrap gap-x-5 gap-y-2">
           <li>

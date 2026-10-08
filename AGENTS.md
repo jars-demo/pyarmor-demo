@@ -37,7 +37,8 @@ app/frontend/                  Next.js 16 · TypeScript · Tailwind 4 · static 
 └── public/brand/ · src/app/{icon,apple-icon,opengraph-image,twitter-image}.png   derived from it
 scripts/                       stdlib-only Python: obfuscate · verify · smoke · runtime_view · gen_playground
 tests/                         pytest; PYARMOR_DEMO_APP_DIR switches the suite to a protected build
-workshop/                      chapters 00–12 (source of truth for the website too)
+workshop/                      chapters 00–12 (source of truth for the website too) + protect-your-project.md
+                               (low-key guide for code you own: footer + chapter 12 link only, noindex)
 examples/playground/           sources for the Playground
 deploy/                        server template: Caddy + HTTPS + internal network (tested on localhost)
 run_api.py                     PyInstaller entry script (chapter 08)
