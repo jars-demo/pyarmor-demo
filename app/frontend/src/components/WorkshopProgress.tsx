@@ -124,7 +124,7 @@ export function CompleteButton({ slug }: { slug: string }) {
       onClick={toggle}
       disabled={!mounted}
       aria-pressed={done}
-      className={`rounded-lg px-4 py-2 text-sm font-semibold ${done ? 'border border-ok bg-ok-soft text-ok' : 'bg-accent text-accent-text hover:opacity-90'}`}
+      className={`rounded-lg px-4 py-2 text-sm font-semibold ${done ? 'border border-ok bg-ok-soft text-ok' : 'bg-brand text-white hover:bg-brand-hover'}`}
     >
       {done ? '✓ Completed' : 'Mark chapter complete'}
     </button>

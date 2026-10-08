@@ -81,7 +81,7 @@ export default function LearnPage() {
       </div>
 
       <section aria-labelledby="looks" className="mt-12">
-        <h2 id="looks" className="text-2xl font-bold tracking-tight">
+        <h2 id="looks" className="text-2xl font-[650] tracking-tight">
           What a protected module looks like
         </h2>
         <p className="mt-3 text-muted">
@@ -90,7 +90,7 @@ export default function LearnPage() {
         <div className="mt-5">
           <CodeBlock lang="python" title="build/protected/app/backend/business_logic/scoring.py" code={PROTECTED} />
         </div>
-        <a href="/workshop/00-introduction/" className="mt-8 inline-block rounded-lg bg-accent px-5 py-2.5 text-sm font-semibold text-accent-text">
+        <a href="/workshop/00-introduction/" className="mt-8 inline-block rounded-lg bg-brand px-5 py-2.5 text-sm font-semibold text-white hover:bg-brand-hover">
           Start the workshop
         </a>
       </section>

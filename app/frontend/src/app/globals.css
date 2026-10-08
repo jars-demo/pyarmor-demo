@@ -4,47 +4,54 @@
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
 :root {
-  --bg: #f6f8fa;
+  /* Brand: PyArmor Blue #2563EB, Ink #0F172A, white-first. */
+  --bg: #f8fafc;
   --paper: #ffffff;
-  --paper-2: #f2f4f7;
-  --line: #e4e8ee;
-  --text: #1b2430;
-  --muted: #5b6878;
-  --faint: #8a96a5;
-  --accent: #0b7a68;
-  --accent-soft: #e2f3ef;
-  --accent-text: #ffffff;
-  --info: #0b6bcb;
-  --info-soft: #e6f0fb;
-  --warn: #a15c00;
-  --warn-soft: #fdf1df;
-  --danger: #c4320a;
-  --danger-soft: #fdeae4;
-  --ok: #1a7f37;
-  --ok-soft: #e3f4e8;
-  --shadow: 0 1px 2px rgb(16 24 40 / 0.04), 0 4px 16px rgb(16 24 40 / 0.06);
+  --paper-2: #f1f5f9;
+  --line: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --faint: #94a3b8;
+  --accent: #2563eb; /* links, active states, small text */
+  --accent-soft: #eff6ff;
+  --brand: #2563eb; /* filled buttons (white text) */
+  --brand-hover: #3b82f6;
+  --hero-from: #eff6ff;
+  --hero-to: #ffffff;
+  --info: #0369a1;
+  --info-soft: #f0f9ff;
+  --warn: #b45309;
+  --warn-soft: #fffbeb;
+  --danger: #dc2626;
+  --danger-soft: #fef2f2;
+  --ok: #15803d;
+  --ok-soft: #f0fdf4;
+  --shadow: 0 1px 2px rgb(15 23 42 / 0.04), 0 4px 16px rgb(15 23 42 / 0.05);
   color-scheme: light;
 }
 
 [data-theme='dark'] {
-  --bg: #11161d;
-  --paper: #171e27;
-  --paper-2: #1e2732;
-  --line: #2a3542;
-  --text: #e8edf3;
-  --muted: #9aa7b6;
-  --faint: #6f7d8d;
-  --accent: #3cc9ad;
-  --accent-soft: #123a34;
-  --accent-text: #08201b;
-  --info: #5aa9f5;
-  --info-soft: #132a40;
-  --warn: #f0b354;
-  --warn-soft: #3a2a12;
-  --danger: #ff8a6b;
-  --danger-soft: #3d1c14;
-  --ok: #56d37a;
-  --ok-soft: #133321;
+  --bg: #0b1220;
+  --paper: #0f172a;
+  --paper-2: #1e293b;
+  --line: #243247;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
+  --faint: #64748b;
+  --accent: #60a5fa;
+  --accent-soft: #172554;
+  --brand: #2563eb;
+  --brand-hover: #3b82f6;
+  --hero-from: #0f1b33;
+  --hero-to: #0b1220;
+  --info: #38bdf8;
+  --info-soft: #0c2a3f;
+  --warn: #fbbf24;
+  --warn-soft: #3a2a0a;
+  --danger: #f87171;
+  --danger-soft: #3b1414;
+  --ok: #4ade80;
+  --ok-soft: #0f2e1c;
   --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.25);
   color-scheme: dark;
 }
@@ -59,7 +66,8 @@
   --color-faint: var(--faint);
   --color-accent: var(--accent);
   --color-accent-soft: var(--accent-soft);
-  --color-accent-text: var(--accent-text);
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
   --color-info: var(--info);
   --color-info-soft: var(--info-soft);
   --color-warn: var(--warn);
@@ -68,7 +76,7 @@
   --color-danger-soft: var(--danger-soft);
   --color-ok: var(--ok);
   --color-ok-soft: var(--ok-soft);
-  --font-sans: var(--font-public-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
   --shadow-card: var(--shadow);
 }
@@ -162,14 +170,14 @@ body {
 .prose-workshop h2 {
   margin-top: 2.5rem;
   font-size: 1.375rem;
-  font-weight: 700;
+  font-weight: 650;
   letter-spacing: -0.01em;
   scroll-margin-top: 88px;
 }
 .prose-workshop h3 {
   margin-top: 1.75rem;
   font-size: 1.125rem;
-  font-weight: 650;
+  font-weight: 600;
   scroll-margin-top: 88px;
 }
 .prose-workshop p,

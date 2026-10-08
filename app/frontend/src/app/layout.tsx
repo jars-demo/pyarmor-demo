@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { JetBrains_Mono, Public_Sans } from 'next/font/google'
+import { Inter, JetBrains_Mono } from 'next/font/google'
 import type { ReactNode } from 'react'
 
 import { Footer } from '@/components/Footer'
@@ -8,7 +8,7 @@ import { SITE_URL } from '@/lib/site'
 
 import './globals.css'
 
-const sans = Public_Sans({ subsets: ['latin'], variable: '--font-public-sans', display: 'swap' })
+const sans = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', display: 'swap' })
 
 const TITLE = 'PyArmor Demo — Python Code Obfuscation Workshop'
@@ -34,13 +34,13 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#f6f8fa' },
-    { media: '(prefers-color-scheme: dark)', color: '#11161d' },
+    { color: '#ffffff' },
   ],
 }
 
-// Sets the theme before first paint, so dark-mode users never see a light flash.
-const THEME_SCRIPT = `try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}document.documentElement.dataset.theme=t}catch(e){document.documentElement.dataset.theme='light'}`
+// The brand is white-first: light unless the visitor picked dark with the toggle. Runs before
+// first paint, so there is no flash.
+const THEME_SCRIPT = `try{document.documentElement.dataset.theme=localStorage.getItem('theme')==='dark'?'dark':'light'}catch(e){document.documentElement.dataset.theme='light'}`
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (

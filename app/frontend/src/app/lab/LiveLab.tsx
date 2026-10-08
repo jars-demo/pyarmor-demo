@@ -93,7 +93,7 @@ export function LiveLab() {
           The Lab talks to the API on your machine. Start it with Docker (<code className="font-mono">docker compose up -d --build</code>) or,
           for development, <code className="font-mono">uv run python -m app</code>, then try again.
         </p>
-        <button type="button" onClick={connect} className="mt-4 rounded-lg bg-accent px-4 py-2 text-sm font-semibold text-accent-text">
+        <button type="button" onClick={connect} className="mt-4 rounded-lg bg-brand px-4 py-2 text-sm font-semibold text-white hover:bg-brand-hover">
           Try again
         </button>
       </div>
@@ -155,7 +155,7 @@ export function LiveLab() {
           type="button"
           onClick={analyze}
           disabled={busy || !info}
-          className="mt-6 w-full rounded-lg bg-accent px-4 py-2.5 text-sm font-semibold text-accent-text disabled:opacity-60"
+          className="mt-6 w-full rounded-lg bg-brand px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-hover disabled:opacity-60"
         >
           {busy ? 'Analyzing…' : 'Analyze customer'}
         </button>

@@ -102,7 +102,7 @@ export default function SecurityPage() {
       </blockquote>
 
       <section aria-labelledby="layers" className="mt-12">
-        <h2 id="layers" className="text-2xl font-bold tracking-tight">
+        <h2 id="layers" className="text-2xl font-[650] tracking-tight">
           Layers, and what each one is for
         </h2>
         <div className="table-wrap mt-6">
