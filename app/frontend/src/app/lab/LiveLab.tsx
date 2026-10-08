@@ -215,7 +215,7 @@ export function LiveLab() {
             </div>
             <div>
               <dt className="text-muted">Average score</dt>
-              <dd className="font-mono text-lg">{report.average_score ?? '–'}</dd>
+              <dd className="font-mono text-lg">{report.average_score ?? 'none'}</dd>
             </div>
             {Object.entries(report.by_classification).map(([label, count]) => (
               <div key={label}>

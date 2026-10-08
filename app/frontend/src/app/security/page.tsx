@@ -78,7 +78,7 @@ export default function SecurityPage() {
               {card.points.map((point) => (
                 <li key={point} className="flex gap-2">
                   <span aria-hidden="true" className="text-faint">
-                    –
+                    •
                   </span>
                   {point}
                 </li>

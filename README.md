@@ -205,7 +205,7 @@ pyarmor-demo/
 │   └── frontend/             Next.js website · Dockerfile, nginx.conf
 ├── scripts/                  obfuscate · verify · smoke · runtime_view · gen_playground
 ├── tests/                    pytest suite (runs on the original and the protected build)
-├── workshop/                 chapters 00–12
+├── workshop/                 chapters 00 to 12
 ├── examples/playground/      sources for the website's before/after Playground
 ├── deploy/                   server template: Caddy + HTTPS
 ├── docs/CHANGELOG.md

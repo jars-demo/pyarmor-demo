@@ -18,7 +18,7 @@ export default function WorkshopIndex() {
         {CHAPTERS.length} chapters · ~{Math.round(TOTAL_MINUTES / 60)} h · every command shows what it does, why, and the expected output.
       </p>
 
-      <h2 className="mt-8 text-sm font-medium text-muted">Setup (Git, uv; Docker for 09–10)</h2>
+      <h2 className="mt-8 text-sm font-medium text-muted">Setup (Git, uv; Docker for 09 and 10)</h2>
       <div className="mt-2">
         <CodeBlock lang="bash" code={`git clone ${REPO_URL}.git\ncd pyarmor-demo\nuv sync`} />
       </div>

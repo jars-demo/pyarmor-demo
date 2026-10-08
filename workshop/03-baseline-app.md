@@ -83,7 +83,7 @@ curl -i -X POST http://127.0.0.1:8300/api/analyze \
   -d '{"customer_value": 75000, "risk_factor": 7, "engagement": 0.78}'
 ```
 
-> **What it does:** sends a `risk_factor` outside the allowed 0–1 range.
+> **What it does:** sends a `risk_factor` outside the allowed 0 to 1 range.
 > **Why:** input validation lives in `api/schemas.py`. Rejecting bad input early is a security
 > control that works whether or not the code is obfuscated.
 > **Expected:** status `422` (`HTTP/1.1 422 Unprocessable Entity` on Python 3.12), with a JSON

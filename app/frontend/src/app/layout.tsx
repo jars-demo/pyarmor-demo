@@ -12,7 +12,7 @@ import './globals.css'
 const sans = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 const mono = JetBrains_Mono({ subsets: ['latin'], variable: '--font-jetbrains-mono', display: 'swap' })
 
-const TITLE = 'PyArmor Demo — Python Code Obfuscation Workshop'
+const TITLE = 'PyArmor Demo · Python Code Obfuscation Workshop'
 const DESCRIPTION =
   'Hands-on PyArmor workshop for Python code obfuscation, runtime protection, Docker packaging, deployment, and security fundamentals.'
 
