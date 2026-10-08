@@ -1,3 +1,4 @@
+import { BentoCard, Snippet } from '@/components/Bento'
 import { CodeBlock } from '@/components/CodeBlock'
 import { CHAPTERS, TOTAL_MINUTES } from '@/lib/chapters'
 import { PYARMOR_VERSION, REPO_URL } from '@/lib/site'
@@ -16,13 +17,27 @@ $ uv run python scripts/verify.py --tests
 38 passed in 0.12s
   ✓ the protected build passes the same tests as the original`
 
-const PIPELINE = [
-  ['Source', 'app/backend/'],
-  ['Obfuscate', 'pyarmor gen -r'],
-  ['Verify', 'scripts/verify.py'],
-  ['Docker', 'no source inside'],
-  ['Deploy', 'proxy + HTTPS'],
-]
+const ORIGINAL = `WEIGHTS = {"value": 0.55, "engagement": 0.45, "risk_penalty": 0.30}
+
+def classify(score: float) -> str:
+    """Name the band a business score falls in."""
+    for threshold, label in CLASS_THRESHOLDS:
+        if score >= threshold:
+            return label
+    return "watch"`
+
+const PROTECTED = String.raw`# Pyarmor 9.2.7 (trial), 000000, non-profits, 2026-10-08T09:17:16.748765
+from pyarmor_runtime_000000 import __pyarmor__
+__pyarmor__(__name__, __file__, b'PY000000\x00\x03\x0c\x00\xcb\r\r\n\x80\x00\x01\x00\x08...`
+
+// scripts/runtime_view.py against the protected build (chapter 07).
+const RUNTIME_VIEW = `constant WEIGHTS = {'value': 0.55, 'engagement': 0.45, 'risk_penalty': 0.3}`
+
+// Inside the final image (chapter 09).
+const DOCKER_CHECK = `$ ls /src
+ls: cannot access '/src': No such file or directory
+$ id
+uid=10001(app) gid=10001(app) groups=10001(app)`
 
 const SCENARIOS = [
   ['A', 'Source available', 'Repository or plain .py files', 'Nothing protected', 'danger'],
@@ -66,19 +81,35 @@ export default function Home() {
         <CodeBlock lang="text" title="terminal" code={SESSION} wrap />
       </section>
 
-      <section aria-labelledby="pipeline" className="border-t border-line py-12">
-        <h2 id="pipeline" className="text-xl font-[650]">
-          Pipeline
+      <section aria-labelledby="proof" className="border-t border-line py-12">
+        <h2 id="proof" className="text-xl font-[650]">
+          What you will see
         </h2>
-        <ol className="mt-5 grid gap-2 sm:grid-cols-5">
-          {PIPELINE.map(([step, detail], i) => (
-            <li key={step} className="card px-4 py-3">
-              <span className="font-mono text-xs text-faint">{String(i + 1).padStart(2, '0')}</span>
-              <p className="font-semibold">{step}</p>
-              <p className="font-mono text-xs text-muted">{detail}</p>
-            </li>
-          ))}
-        </ol>
+        <p className="mt-1 text-sm text-muted">Real output from the workshop runs.</p>
+        <div className="mt-6 grid gap-3 md:grid-cols-6">
+          <BentoCard label="05 · Obfuscation" title="Readable source → three-line stub" href="/playground/" linkText="Compare in the Playground" className="md:col-span-4 md:row-span-2">
+            <div className="grid h-full gap-3 lg:grid-cols-2">
+              <Snippet>{ORIGINAL}</Snippet>
+              <Snippet>{PROTECTED}</Snippet>
+            </div>
+          </BentoCard>
+          <BentoCard label="Verify" title="Same behaviour" href="/workshop/05-obfuscation/" className="md:col-span-2">
+            <p className="font-mono text-3xl font-semibold text-text">38 / 38</p>
+            <p className="mt-1">tests pass on the original and the protected build.</p>
+          </BentoCard>
+          <BentoCard label="06 · Runtime" title="No runtime, no app" href="/workshop/06-runtime/" className="md:col-span-2">
+            <Snippet tone="danger">{"ModuleNotFoundError: No module named 'pyarmor_runtime_000000'"}</Snippet>
+          </BentoCard>
+          <BentoCard label="09 · Docker" title="No source in the image" href="/workshop/09-docker/" className="md:col-span-2">
+            <Snippet>{DOCKER_CHECK}</Snippet>
+          </BentoCard>
+          <BentoCard label="06 · Expiry" title="Builds that stop working" href="/workshop/06-runtime/" className="md:col-span-2">
+            <Snippet tone="danger">{'RuntimeError: this license key is expired (1:11086)'}</Snippet>
+          </BentoCard>
+          <BentoCard label="07 · Limits" title="Still visible at runtime" href="/security/" linkText="Security model" className="md:col-span-2">
+            <Snippet>{RUNTIME_VIEW}</Snippet>
+          </BentoCard>
+        </div>
       </section>
 
       <section aria-labelledby="threat" className="border-t border-line py-12">

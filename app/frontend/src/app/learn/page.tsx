@@ -47,6 +47,9 @@ const CONCEPTS = [
   },
 ]
 
+// Bento layout: two wide cells, three narrow, one full-width.
+const SPANS = ['md:col-span-3', 'md:col-span-3', 'md:col-span-2', 'md:col-span-2', 'md:col-span-2', 'md:col-span-6']
+
 const PROTECTED = `# Pyarmor 9.2.7 (trial), 000000, non-profits, 2026-10-08T09:17:16
 from pyarmor_runtime_000000 import __pyarmor__
 __pyarmor__(__name__, __file__, b'PY000000\\x00\\x03\\x0c\\x00\\xcb\\r\\r\\n\\x80...')`
@@ -59,23 +62,14 @@ export default function LearnPage() {
         Six concepts. The workshop proves each one on a real app.
       </p>
 
-      <div className="mt-10 space-y-3">
+      <div className="mt-8 grid gap-3 md:grid-cols-6">
         {CONCEPTS.map((concept, i) => (
-          <details key={concept.id} id={concept.id} className="card group p-5" open={i === 0}>
-            <summary className="flex cursor-pointer list-none items-start gap-4">
-              <span aria-hidden="true" className="grid size-8 shrink-0 place-items-center rounded-lg bg-accent-soft font-mono text-sm font-semibold text-accent">
-                {i + 1}
-              </span>
-              <span className="flex-1">
-                <span className="block font-semibold">{concept.title}</span>
-                <span className="mt-1 block text-sm text-muted">{concept.body}</span>
-              </span>
-              <span aria-hidden="true" className="text-faint transition-transform group-open:rotate-180">
-                ⌄
-              </span>
-            </summary>
-            <p className="mt-4 border-t border-line pt-4 text-sm leading-relaxed">{concept.detail}</p>
-          </details>
+          <section key={concept.id} id={concept.id} className={`card flex flex-col p-5 ${SPANS[i]}`}>
+            <p className="font-mono text-[11px] uppercase tracking-wider text-faint">{String(i + 1).padStart(2, '0')}</p>
+            <h2 className="mt-1.5 font-semibold">{concept.title}</h2>
+            <p className="mt-2 text-sm text-text">{concept.body}</p>
+            <p className="mt-3 border-t border-line pt-3 text-sm text-muted">{concept.detail}</p>
+          </section>
         ))}
       </div>
 

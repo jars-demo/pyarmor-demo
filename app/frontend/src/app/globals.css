@@ -29,25 +29,26 @@
 }
 
 [data-theme='dark'] {
-  --bg: #0b1220;
-  --paper: #0f172a;
-  --paper-2: #1e293b;
-  --line: #243247;
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-  --faint: #64748b;
+  /* Neutral zinc surfaces (shadcn-style). Colour only for brand, links and status text. */
+  --bg: #09090b;
+  --paper: #0f0f11;
+  --paper-2: #18181b;
+  --line: #27272a;
+  --text: #fafafa;
+  --muted: #a1a1aa;
+  --faint: #71717a;
   --accent: #60a5fa;
-  --accent-soft: #172554;
+  --accent-soft: #1d1d21;
   --brand: #2563eb;
   --brand-hover: #3b82f6;
-  --info: #38bdf8;
-  --info-soft: #0c2a3f;
+  --info: #60a5fa;
+  --info-soft: color-mix(in srgb, #60a5fa 7%, #09090b);
   --warn: #fbbf24;
-  --warn-soft: #3a2a0a;
+  --warn-soft: color-mix(in srgb, #fbbf24 7%, #09090b);
   --danger: #f87171;
-  --danger-soft: #3b1414;
+  --danger-soft: color-mix(in srgb, #f87171 7%, #09090b);
   --ok: #4ade80;
-  --ok-soft: #0f2e1c;
+  --ok-soft: color-mix(in srgb, #4ade80 7%, #09090b);
   --shadow: none;
   color-scheme: dark;
 }
@@ -88,6 +89,15 @@ html {
 body {
   background: var(--bg);
   font-family: var(--font-sans);
+}
+
+/* Code is shown exactly as typed: no `>=` or `->` ligatures. */
+code,
+pre,
+kbd,
+samp,
+.font-mono {
+  font-variant-ligatures: none;
 }
 
 :focus-visible {
@@ -137,7 +147,7 @@ body {
 /* Long single-line payloads (protected output) wrap instead of scrolling sideways. */
 .wrap .shiki {
   white-space: pre-wrap;
-  word-break: break-all;
+  overflow-wrap: anywhere;
 }
 .numbered .shiki code {
   counter-reset: line;
@@ -252,6 +262,10 @@ body {
 }
 
 /* `> [!NOTE]` etc. */
+[data-theme='dark'] .callout {
+  border-color: var(--line);
+  border-left-color: var(--c);
+}
 .callout {
   --c: var(--info);
   --c-soft: var(--info-soft);
