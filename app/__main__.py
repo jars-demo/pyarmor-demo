@@ -5,6 +5,7 @@ import logging
 import uvicorn
 
 from app.core.config import load_settings
+from app.main import app
 
 
 def main() -> None:
@@ -12,9 +13,9 @@ def main() -> None:
     logging.basicConfig(
         level=settings.log_level.upper(), format="%(levelname)s %(name)s %(message)s"
     )
-    uvicorn.run(
-        "app.main:app", host=settings.host, port=settings.port, log_level=settings.log_level
-    )
+    # Pass the app object, not the "app.main:app" string: a direct import is something bundlers
+    # such as PyInstaller can see, which matters once the code is obfuscated (workshop step 08).
+    uvicorn.run(app, host=settings.host, port=settings.port, log_level=settings.log_level)
 
 
 if __name__ == "__main__":
