@@ -26,7 +26,10 @@ def call(url: str, body: dict | None = None) -> tuple[int, dict]:
         with urllib.request.urlopen(request, timeout=5) as response:
             return response.status, json.load(response)
     except urllib.error.HTTPError as error:
-        return error.code, json.load(error)
+        try:
+            return error.code, json.load(error)
+        except json.JSONDecodeError:  # e.g. an HTML error page from a proxy
+            return error.code, {}
 
 
 def wait_for(url: str, seconds: float) -> bool:
